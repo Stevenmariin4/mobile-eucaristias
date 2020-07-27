@@ -56,6 +56,7 @@ public class EscannerCoder extends AppCompatActivity {
     public String idReserva;
     public String Nombres;
     public String Apellido;
+    public Enviroment env = new Enviroment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +113,7 @@ public class EscannerCoder extends AppCompatActivity {
     }
 
     public void getReserva() {
-        String url = "https://apiecucaristica.herokuapp.com/home/reserva";
+        String url = env.getReservas();
         requestQueue = Volley.newRequestQueue(this);
         requestQueue = Volley.newRequestQueue(this);
         Map<String, String> params = new HashMap<String, String>();
@@ -149,6 +150,7 @@ public class EscannerCoder extends AppCompatActivity {
                             startActivity(intent);
                         }
                     } catch (JSONException e) {
+                        progress.dismiss();
                         Toast.makeText(getApplicationContext(), "Error al obtener la reserva", Toast.LENGTH_SHORT).show();
                         e.printStackTrace();
                     }
@@ -156,6 +158,8 @@ public class EscannerCoder extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    progress.dismiss();
+                    Toast.makeText(getApplicationContext(), (CharSequence) error, Toast.LENGTH_SHORT).show();
                     Log.e("error", String.valueOf(error));
 
                 }

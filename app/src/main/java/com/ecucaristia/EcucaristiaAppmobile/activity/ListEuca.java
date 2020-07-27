@@ -39,8 +39,8 @@ public class ListEuca extends AppCompatActivity {
     private JsonObjectRequest mStringRequest;
     public int idIglesia;
     public ArrayList<modelListEucaristias> model = new ArrayList<>();
-
     public modelListEucaristias m = new modelListEucaristias();
+    public Enviroment env = new Enviroment();
     private ProgressDialog progress;
 
     @Override
@@ -70,7 +70,7 @@ public class ListEuca extends AppCompatActivity {
     }
 
     public void getData(int id) {
-        String url = "https://apiecucaristica.herokuapp.com/home/list";
+        String url = env.getListReservas();
         requestQueue = Volley.newRequestQueue(this);
         Map<String, Integer> params = new HashMap<String, Integer>();
         params.put("id", id);
@@ -106,6 +106,7 @@ public class ListEuca extends AppCompatActivity {
             }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getApplicationContext(), (CharSequence) error,Toast.LENGTH_SHORT).show();
                     Log.e("error", String.valueOf(error));
 
                 }

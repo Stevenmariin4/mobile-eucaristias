@@ -42,6 +42,7 @@ public class TempActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
     private JsonObjectRequest mStringRequest;
     private ProgressDialog progress;
+    public Enviroment env = new Enviroment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +77,7 @@ public class TempActivity extends AppCompatActivity {
     }
 
     public void SetgetData(String id, String tem) {
-        String url = "https://apiecucaristica.herokuapp.com/home/update/reserva";
+        String url = env.getUpdateReservas();
         requestQueue = Volley.newRequestQueue(this);
         Map<String, String> params = new HashMap<String, String>();
         params.put("id", id);
