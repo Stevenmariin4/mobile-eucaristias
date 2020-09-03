@@ -112,9 +112,9 @@ public class MainActivity extends AppCompatActivity {
                         listview.setAdapter((ListAdapter) adapter);
                         progress.dismiss();
                     } catch (JSONException e) {
-
                         progress.dismiss();
                         Toast.makeText(getApplicationContext(), "Error al obtener la lista de iglesias", Toast.LENGTH_SHORT).show();
+                        Log.e("errorPeticiones", e.toString());
                         e.printStackTrace();
                     }
                 }
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onErrorResponse(VolleyError error) {
                     progress.dismiss();
                     Toast.makeText(getApplicationContext(), "Error Al enviar solicitud de iglesias " + error, Toast.LENGTH_SHORT).show();
-                    Log.e("error", String.valueOf(error));
+                    Log.e("errorPeticiones", String.valueOf(error));
 
                 }
             });

@@ -102,9 +102,8 @@ public class EscannerCoder extends AppCompatActivity {
                 Nombres = DataPersonas.Names;
                 Apellido = DataPersonas.LastNames;
                 lastNames.setText(DataPersonas.LastNames);
-                getReserva();
-
                 // Handle successful scan
+                getReserva();
             } else if (resultCode == RESULT_CANCELED) {
                 // Handle cancel
                 Toast.makeText(this, "Fallo al obtener documento", Toast.LENGTH_SHORT).show();
@@ -139,8 +138,8 @@ public class EscannerCoder extends AppCompatActivity {
                             progress.dismiss();
                             for (int i = 0; i < datos.length(); i++) {
                                 JSONObject objeto = datos.getJSONObject(i);
-                                Log.e("onResponse: ", String.valueOf(objeto.getString("idReserva")));
                                 idReserva = objeto.getString("idReserva");
+                                //idReserva = objeto.getString("id");
                             }
 
                             Intent intent = new Intent(EscannerCoder.this, TempActivity.class);
